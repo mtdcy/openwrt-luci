@@ -1,3 +1,23 @@
+## Merge Fullcone NAT from immortalwrt
+
+```shell
+git remote add immortalwrt https://github.com/immortalwrt/luci.git
+git fetch immortalwrt
+
+# luci-base
+git show f4c3b2624f
+vim modules/luci-base/root/usr/share/rpcd/ucode/luci
+git commit modules/luci-base/root/usr/share/rpcd/ucode/luci -m "luci-base: add system feature flag for fullcone nat"
+
+# luci-app-firewall
+git cherry-pick cbf9e16308 6da116c8ce f9b443869f
+
+# luci-app-turboacc => defer this pick as turboacc not exists here
+git cherry-pick b2099f6656 a24fa9e94c 6e83fddc58 f99c405718 88f7fcb583
+```
+
+---
+
 # OpenWrt luci feed
 
 [![Translation status](https://hosted.weblate.org/widgets/openwrt/-/svg-badge.svg)](https://hosted.weblate.org/engage/openwrt/?utm_source=widget)
